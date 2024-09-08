@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "power-quant-analyst"
+version = "0.1.0"
+description = ""
+authors = ["Jack Sweep <Jack.Sweep@shellenergy.com.au>"]
+readme = "README.md"
+packages = [{include = "power_quant_analyst"}]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+jupyterlab = "^4.2.5"
+streamlit = "^1.38.0"
+pandas = "^2.2.2"
+numpy = "^2.1.1"
+plotly = "^5.24.0"
+matplotlib = "^3.9.2"
+torch = "^2.4.1"
+scipy = "^1.14.1"
+pulp = "^2.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
