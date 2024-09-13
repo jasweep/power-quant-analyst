@@ -17,6 +17,10 @@ matplotlib = "^3.9.2"
 torch = "^2.4.1"
 scipy = "^1.14.1"
 pulp = "^2.9.0"
+gym = "^0.26.2"
+gymnasium = "^0.29.1"
+pqdm = "^0.2.0"
+stable-baselines3 = "^2.3.2"
 
 
 [build-system]
