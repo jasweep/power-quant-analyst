@@ -364,14 +364,14 @@ print(f"${objective:,.2f}")
 
 ```
 
-    C:\Users\Jack.Sweep2\AppData\Local\Temp\ipykernel_31308\3176222236.py:15: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+    C:\Users\Jack.Sweep2\AppData\Local\Temp\ipykernel_36524\3176222236.py:15: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
       prob += pulp.lpSum([prices[t] * d[t] * eta_d - prices[t] * c[t] / eta_c for t in range(T)])
     
 
     $74,572.17
     
 
-    C:\Users\Jack.Sweep2\AppData\Local\Temp\ipykernel_31308\3176222236.py:48: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+    C:\Users\Jack.Sweep2\AppData\Local\Temp\ipykernel_36524\3176222236.py:48: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
       cashflow = [prices[t] * discharging[t] * eta_d - prices[t] * charging[t] / eta_c for t in range(T)]
     
 
@@ -547,9 +547,9 @@ for day, prices in hourly_data.groupby(hourly_data.index.date):
     Processing day 0
     
 
-    C:\Users\Jack.Sweep2\AppData\Local\Temp\ipykernel_31308\3176222236.py:15: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+    C:\Users\Jack.Sweep2\AppData\Local\Temp\ipykernel_36524\3176222236.py:15: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
       prob += pulp.lpSum([prices[t] * d[t] * eta_d - prices[t] * c[t] / eta_c for t in range(T)])
-    C:\Users\Jack.Sweep2\AppData\Local\Temp\ipykernel_31308\3176222236.py:48: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+    C:\Users\Jack.Sweep2\AppData\Local\Temp\ipykernel_36524\3176222236.py:48: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
       cashflow = [prices[t] * discharging[t] * eta_d - prices[t] * charging[t] / eta_c for t in range(T)]
     
 
@@ -794,7 +794,7 @@ class BatteryEnv(gym.Env):
         pass  # Not implemented
 
 # Prepare the data for the environment
-prices = hourly_data.loc['2024-01-01':]  # Use the same hourly prices
+prices = data.RRP.loc['2024-01-01':]  # Use the same hourly prices # removed hourly_data
 eta_c = 0.95
 eta_d = 0.95
 E_max = 100
@@ -818,107 +818,97 @@ model = PPO("MlpPolicy", env, verbose=1)
 ```python
 # Train the model
 model.learn(total_timesteps=10000)
-
 ```
 
     -----------------------------
     | time/              |      |
-    |    fps             | 2922 |
+    |    fps             | 3008 |
     |    iterations      | 1    |
     |    time_elapsed    | 0    |
     |    total_timesteps | 2048 |
     -----------------------------
+    --------------------------------------------
+    | time/                   |                |
+    |    fps                  | 1011           |
+    |    iterations           | 2              |
+    |    time_elapsed         | 4              |
+    |    total_timesteps      | 4096           |
+    | train/                  |                |
+    |    approx_kl            | 0.0133999465   |
+    |    clip_fraction        | 0.165          |
+    |    clip_range           | 0.2            |
+    |    entropy_loss         | -1.41          |
+    |    explained_variance   | -0.00024139881 |
+    |    learning_rate        | 0.0003         |
+    |    loss                 | 1.9e+06        |
+    |    n_updates            | 10             |
+    |    policy_gradient_loss | -0.0192        |
+    |    std                  | 0.99           |
+    |    value_loss           | 3.86e+06       |
+    --------------------------------------------
     ------------------------------------------
     | time/                   |              |
-    |    fps                  | 1007         |
-    |    iterations           | 2            |
-    |    time_elapsed         | 4            |
-    |    total_timesteps      | 4096         |
+    |    fps                  | 820          |
+    |    iterations           | 3            |
+    |    time_elapsed         | 7            |
+    |    total_timesteps      | 6144         |
     | train/                  |              |
-    |    approx_kl            | 0.009450228  |
-    |    clip_fraction        | 0.109        |
+    |    approx_kl            | 0.009511376  |
+    |    clip_fraction        | 0.103        |
     |    clip_range           | 0.2          |
-    |    entropy_loss         | -1.42        |
-    |    explained_variance   | 6.556511e-07 |
+    |    entropy_loss         | -1.4         |
+    |    explained_variance   | 0.0025376081 |
     |    learning_rate        | 0.0003       |
-    |    loss                 | 3.97e+07     |
-    |    n_updates            | 10           |
-    |    policy_gradient_loss | -0.00902     |
-    |    std                  | 0.994        |
-    |    value_loss           | 1.26e+08     |
+    |    loss                 | 2.52e+06     |
+    |    n_updates            | 20           |
+    |    policy_gradient_loss | -0.0131      |
+    |    std                  | 0.976        |
+    |    value_loss           | 4.79e+06     |
     ------------------------------------------
-    -------------------------------------------
-    | rollout/                |               |
-    |    ep_len_mean          | 5.98e+03      |
-    |    ep_rew_mean          | -1.95e+05     |
-    | time/                   |               |
-    |    fps                  | 826           |
-    |    iterations           | 3             |
-    |    time_elapsed         | 7             |
-    |    total_timesteps      | 6144          |
-    | train/                  |               |
-    |    approx_kl            | 0.010875047   |
-    |    clip_fraction        | 0.147         |
-    |    clip_range           | 0.2           |
-    |    entropy_loss         | -1.41         |
-    |    explained_variance   | 0.00032430887 |
-    |    learning_rate        | 0.0003        |
-    |    loss                 | 3.74e+06      |
-    |    n_updates            | 20            |
-    |    policy_gradient_loss | -0.0187       |
-    |    std                  | 0.986         |
-    |    value_loss           | 1.01e+07      |
-    -------------------------------------------
     ------------------------------------------
-    | rollout/                |              |
-    |    ep_len_mean          | 5.98e+03     |
-    |    ep_rew_mean          | -1.95e+05    |
     | time/                   |              |
-    |    fps                  | 779          |
+    |    fps                  | 761          |
     |    iterations           | 4            |
     |    time_elapsed         | 10           |
     |    total_timesteps      | 8192         |
     | train/                  |              |
-    |    approx_kl            | 0.0050670337 |
-    |    clip_fraction        | 0.0134       |
+    |    approx_kl            | 0.002631481  |
+    |    clip_fraction        | 0.000684     |
     |    clip_range           | 0.2          |
-    |    entropy_loss         | -1.4         |
-    |    explained_variance   | 0.0005671382 |
+    |    entropy_loss         | -1.39        |
+    |    explained_variance   | 4.607439e-05 |
     |    learning_rate        | 0.0003       |
-    |    loss                 | 8.85e+06     |
+    |    loss                 | 1.51e+08     |
     |    n_updates            | 30           |
-    |    policy_gradient_loss | -0.00364     |
-    |    std                  | 0.985        |
-    |    value_loss           | 8.22e+07     |
+    |    policy_gradient_loss | -0.00305     |
+    |    std                  | 0.972        |
+    |    value_loss           | 2.41e+09     |
     ------------------------------------------
     -------------------------------------------
-    | rollout/                |               |
-    |    ep_len_mean          | 5.98e+03      |
-    |    ep_rew_mean          | -1.95e+05     |
     | time/                   |               |
-    |    fps                  | 755           |
+    |    fps                  | 698           |
     |    iterations           | 5             |
-    |    time_elapsed         | 13            |
+    |    time_elapsed         | 14            |
     |    total_timesteps      | 10240         |
     | train/                  |               |
-    |    approx_kl            | 0.00012354823 |
-    |    clip_fraction        | 0             |
+    |    approx_kl            | 0.0012587435  |
+    |    clip_fraction        | 0.000635      |
     |    clip_range           | 0.2           |
-    |    entropy_loss         | -1.4          |
-    |    explained_variance   | 0.0003734231  |
+    |    entropy_loss         | -1.39         |
+    |    explained_variance   | 7.8201294e-05 |
     |    learning_rate        | 0.0003        |
-    |    loss                 | 2.04e+08      |
+    |    loss                 | 8.35e+06      |
     |    n_updates            | 40            |
-    |    policy_gradient_loss | -1.5e-05      |
-    |    std                  | 0.981         |
-    |    value_loss           | 1.84e+08      |
+    |    policy_gradient_loss | -0.000778     |
+    |    std                  | 0.975         |
+    |    value_loss           | 1.72e+08      |
     -------------------------------------------
     
 
 
 
 
-    <stable_baselines3.ppo.ppo.PPO at 0x1875e877c50>
+    <stable_baselines3.ppo.ppo.PPO at 0x257846b45d0>
 
 
 
@@ -958,7 +948,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-    Total Profit from RL agent: $727,274.69
+    Total Profit from RL agent: $1,130,532.60
     
 
 
