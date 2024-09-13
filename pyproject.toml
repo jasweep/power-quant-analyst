@@ -21,6 +21,7 @@ gym = "^0.26.2"
 gymnasium = "^0.29.1"
 pqdm = "^0.2.0"
 stable-baselines3 = "^2.3.2"
+nbconvert = "^7.16.4"
 
 
 [build-system]
